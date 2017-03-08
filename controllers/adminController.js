@@ -18,17 +18,21 @@ router.get("/users", function(req, res) {
   });
 });
 
-router.get("/user/search/:username", function(req, res) {
+router.post("/user/search", function(req, res) {
 
   db.User.findOne({
     where: {
-      username: req.params.username
+      username: req.body.username
     },
   }).then(function(data){
     console.log(data.username);
+    res.render("index/result", {data: data});
   });
 });
 
+router.get("/user/search/:username", function(req,res){
+  res.render("index/result");
+})
 router.post("/create/user", function(req, res) {
   db.User.create(req.body).then(function(dbPost) {
     res.redirect("/");

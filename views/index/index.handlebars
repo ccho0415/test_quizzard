@@ -7,7 +7,7 @@
   <input type="text" name="username" placeholder="username"></input>
   <br><br>
   <input type="email" name="email" placeholder="email"></input>
-  <br><br>s
+  <br><br>
   <input type="password" name="password_hash" placeholder="password"></input>
   <br><br>
   <input type="checkbox" name="isAdmin" value="true" placeholder="admin"></input>
@@ -22,14 +22,7 @@
 <br><br>
 <a class="btn btn-default" href="/admin/users">View Users</a>
 
-<form>
-  <input type= "text" name ="username" placeholder = "username" id = "user-to-be-searched"></input>
-  <input type ="submit" id="search-user"></input>
+<form action ="/admin/user/search" method = "POST">
+  <input type= "text" name ="username" placeholder = "username"></input>
+  <input type ="submit"></input>
 </form>
-  <script type="text/javascript">
-    $("#search-user").on("click", function() {
-      var searchedUser = $("#user-to-be-searched").val().trim();
-
-      $.get("/user/search" + searchedUser);
-    });
-  </script>
