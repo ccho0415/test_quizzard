@@ -1,0 +1,28 @@
+<h1>Admin Page</h1>
+
+<h2>Create a new user</h2>
+
+
+<form action="/admin/create/user" method="POST">
+  <input type="text" name="username" placeholder="username"></input>
+  <br><br>
+  <input type="email" name="email" placeholder="email"></input>
+  <br><br>
+  <input type="password" name="password_hash" placeholder="password"></input>
+  <br><br>
+  <input type="checkbox" name="isAdmin" value="true" placeholder="admin"></input>
+  <br><br>
+  <input type="url" name="img_url" placeholder="img url"></input>
+  <br><br>
+  <input type="date" name="dob" placeholder="date of birth"></input>
+  <br><br>
+  <input type="submit"></input>
+</form>
+
+<br><br>
+<a class="btn btn-default" href="/admin/users">View Users</a>
+
+<form action ="/admin/user/search" method = "GET">
+  <input type= "text" name ="user" placeholder = "username"></input>
+  <input type ="submit"></input>
+</form>
