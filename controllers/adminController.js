@@ -18,15 +18,14 @@ router.get("/users", function(req, res) {
   });
 });
 
-// Get rotue for retrieving a single post
-router.get("/user/search", function(req, res) {
-  console.log(req.body);
+router.get("/user/search/:username", function(req, res) {
+
   db.User.findOne({
     where: {
-      username: req.body.user
+      username: req.params.username
     },
-  }).then(function(dbUser) {
-    res.json(dbUser);
+  }).then(function(data){
+    console.log(data.username);
   });
 });
 
