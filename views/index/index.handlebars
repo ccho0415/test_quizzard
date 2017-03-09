@@ -3,9 +3,9 @@
 <h2>Create a new user</h2>
 
 
-<form action="/admin/create/user" method="POST">
+<form id="userForm" action="/admin/create/user" method="POST">
   <input type="text" name="username" placeholder="username"></input>
-  <br><br>
+ <br><br>
   <input type="email" name="email" placeholder="email"></input>
   <br><br>
   <input type="password" name="password_hash" placeholder="password"></input>
@@ -14,7 +14,7 @@
   <br><br>
   <input type="url" name="img_url" placeholder="img url"></input>
   <br><br>
-  <input type="date" name="dob" placeholder="date of birth"></input>
+ <input type="date" name="dob" placeholder="date of birth"></input>
   <br><br>
   <input type="submit"></input>
 </form>
@@ -26,7 +26,7 @@
         <ul class="list-group todo-list">
           <li class="list-group-item new-item">
             <form id="user-search">
-            <input id="userToSearch" placeholder="Add a todo" type="text" />
+            <input id="userToSearch" placeholder="Which User?" type="text" />
             <button type="submit" class="btn btn-default">Search a User</button>
             </form>
           </li>
@@ -35,3 +35,18 @@
         </ul>
       </div>
   </div>
+
+<h2>Create a new category</h2>
+
+<form id ="categoryForm" action="/admin/create/category" method="POST">
+  <input type="text" name="categoryname" placeholder="username"></input>
+  <br><br>
+  <textarea name="description" placeholder="description"></textarea>
+  <br><br>
+  <input type="url" name="img_url" placeholder="img url"></input>
+  <br><br>
+  <input type="submit"></input>
+</form>
+
+<br><br>
+<a class="btn btn-default" href="/admin/categories">View Categories</a>
