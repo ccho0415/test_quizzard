@@ -42,6 +42,17 @@ router.delete("/user/:id", function(req, res) {
   });
 });
 
+router.get("/user/modify/:username", function(req,res){
+  db.User.findOne({
+    where:{
+      username: req.params.username
+    }
+  }).then(function(data){
+    console.log(data)
+    res.render('modifyuser/modifyuser',{data: data})
+  })
+});
+
 router.put("/user/:id", function(req, res) {
   db.Post.update({
       where: {

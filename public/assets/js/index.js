@@ -12,6 +12,7 @@ $(document).ready(function() {
 
   $(document).on("submit", "#category-search", categorySearch);
 
+
   var userdata;
 
 
@@ -26,7 +27,8 @@ $(document).ready(function() {
     userSearchResult.append("<li> Admin Status : "+isAdmin+"</li>");
     userSearchResult.append("<li> Unique User Id : "+id+"</li>");
     userSearchResult.append("<li> Date of Birth : "+dob+"</li>");
-    userSearchResult.append("<li> Account Created : "+created+"</li>");       
+    userSearchResult.append("<li> Account Created : "+created+"</li>");
+    userSearchResult.append("<a class ='btn btn-default' href ='/admin/user/modify/"+name+"'> Modify User </a>") ;      
   }
 // ================================================================================
 
@@ -65,7 +67,7 @@ $(document).ready(function() {
   }
 // ================================================================================
 
-// This actually looks for the user
+// This actually looks for the category
 // Do not change this
   function categorySearch(event) {
     event.preventDefault();
@@ -85,6 +87,7 @@ $(document).ready(function() {
     });
     categoryToSearch.val("");
   }
+
 
 
 });
