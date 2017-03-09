@@ -65,7 +65,7 @@ router.post("/create/category", function(req, res) {
 router.get("/category/search/:categoryname", function(req,res){
   db.Category.findOne({
     where: {
-      username: req.params.categoryname
+      categoryname: req.params.categoryname
     },
   }).then(function(data){
     res.json(data);
