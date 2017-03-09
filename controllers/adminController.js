@@ -17,19 +17,11 @@ router.get("/users", function(req, res) {
     res.json(dbUser);
   });
 });
-
-// router.post("/user/search", function(req, res) {
-
-//   db.User.findOne({
-//     where: {
-//       username: req.body.username
-//     },
-//   }).then(function(data){
-//     console.log(data.username);
-//     res.render("index/result", {data: data});
-//   });
-// });
-
+router.post("/create/user", function(req, res) {
+  db.User.create(req.body).then(function(dbPost) {
+    res.redirect("/");
+  });
+});
 router.get("/user/search/:username", function(req,res){
   db.User.findOne({
     where: {
@@ -39,11 +31,7 @@ router.get("/user/search/:username", function(req,res){
     res.json(data);
   });
 })
-router.post("/create/user", function(req, res) {
-  db.User.create(req.body).then(function(dbPost) {
-    res.redirect("/");
-  });
-});
+
 
 // DELETE route for deleting posts
 router.delete("/user/:id", function(req, res) {
