@@ -21,8 +21,17 @@
 
 <br><br>
 <a class="btn btn-default" href="/admin/users">View Users</a>
-
-<form action ="/admin/user/search" method = "POST">
-  <input type= "text" name ="username" placeholder = "username"></input>
-  <input type ="submit"></input>
-</form>
+  <div class="container">
+    <div class="row">
+        <ul class="list-group todo-list">
+          <li class="list-group-item new-item">
+            <form id="user-search">
+            <input id="userToSearch" placeholder="Add a todo" type="text" />
+            <button type="submit" class="btn btn-default">Search a User</button>
+            </form>
+          </li>
+          <span id="user-search-result">
+          </span>
+        </ul>
+      </div>
+  </div>
