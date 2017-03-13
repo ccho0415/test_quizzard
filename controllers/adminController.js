@@ -49,7 +49,7 @@ router.get("/user/modify/:username", function(req,res){
     }
   }).then(function(data){
     console.log(data)
-    res.render('modifyuser/modifyuser',{data: data})
+    res.render('modifyuser/index',{data: data})
   })
 });
 

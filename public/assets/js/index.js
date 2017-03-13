@@ -8,9 +8,15 @@ $(document).ready(function() {
 
   var categorySearchResult = $("#category-search-result");
 
+  var userToModify =$("input#userToModify");  
+
+  var modifyUserArea = $("#modify-user-area");
+
   $(document).on("submit", "#user-search", userSearch);
 
   $(document).on("submit", "#category-search", categorySearch);
+
+  $(document).on("click", "#modify-toggle", modifyToggle);
 
 
   var userdata;
@@ -28,7 +34,7 @@ $(document).ready(function() {
     userSearchResult.append("<li> Unique User Id : "+id+"</li>");
     userSearchResult.append("<li> Date of Birth : "+dob+"</li>");
     userSearchResult.append("<li> Account Created : "+created+"</li>");
-    userSearchResult.append("<a class ='btn btn-default' href ='/admin/user/modify/"+name+"'> Modify User </a>") ;      
+    userSearchResult.append("<a class ='btn btn-default' id ='modify-toggle'> Modify User </a>") ;      
   }
 // ================================================================================
 
@@ -90,4 +96,15 @@ $(document).ready(function() {
 
 
 
+
+// This edits the user
+// Do not change this
+function modifyToggle() {
+  modifyUserArea.append("<form id ='#modify-user'>");
+  modifyUserArea.append("<input type='text' name='username' placeholder='username' id ='userToModify'></input><br><br>");
+  modifyUserArea.append("<input type='password' name='password_hash' placeholder='password'></input><br><br>");
+  modifyUserArea.append("<input type='checkbox' name='isAdmin' value='true' placeholder='admin'></input><br><br>");
+  modifyUserArea.append("<input type='url' name='img_url' placeholder='img url'></input>")
+  modifyUserArea.append("<input type='submit'></input>")
+}
 });

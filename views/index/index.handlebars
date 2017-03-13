@@ -18,39 +18,43 @@
   <br><br>
   <input type="submit"></input>
 </form>
-
 <br><br>
 <a class="btn btn-default" href="/admin/users">View Users</a>
-  <div class="container">
-    <div class="row">
-
+<br><br>
+<div class="container">
+  <div class="row">
   <form id="user-search">
     <input id="userToSearch" placeholder="Which User?" type="text" />
-      <button type="submit" class="btn btn-default" id="user-search-button">Search a User</button>
+    <button type="submit" class="btn btn-default" id="user-search-button">Search a User</button>
   </form>
-  <span id="user-search-result"> </span>
-
-      </div>
+  <br><br>
+  <span id="user-search-result"></span>
+  <br><br>
+  <div id = "modify-user-area"></div>
   </div>
+</div>
+<div class = "container">
+  <div class = "row">
+  <h2>Create a new category</h2>
 
-<h2>Create a new category</h2>
-
-<form id ="categoryForm" action="/admin/create/category" method="POST">
-  <input type="text" name="categoryname" placeholder="category"></input>
+  <form id ="categoryForm" action="/admin/create/category" method="POST">
+    <input type="text" name="categoryname" placeholder="category"></input>
   <br><br>
-  <textarea name="description" placeholder="description"></textarea>
+    <textarea name="description" placeholder="description"></textarea>
   <br><br>
-  <input type="url" name="img_url" placeholder="img url"></input>
+    <input type="url" name="img_url" placeholder="img url"></input>
   <br><br>
-  <input type="submit"></input>
-</form>
-
-<br><br>
-<a class="btn btn-default" href="/admin/categories">View Categories</a>
-<form id="category-search">
-  <input id="categoryToSearch" placeholder="Which Category?" type="text" />
+    <input type="submit"></input>
+  </form>
+  <br><br>
+  <a class="btn btn-default" href="/admin/categories">View Categories</a>
+  <br><br>
+  <form id="category-search">
+    <input id="categoryToSearch" placeholder="Which Category?" type="text" />
     <button type="submit" class="btn btn-default" id="category-serach-button">Search a Category</button>
-</form>
+  </form>
+  <br><br>
   <span id="category-search-result"></span>
-      </div>
   </div>
+</div>
+    

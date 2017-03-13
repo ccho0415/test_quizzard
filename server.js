@@ -6,7 +6,7 @@
 // =============================================================
 var express = require("express");
 var bodyParser = require("body-parser");
-
+var path = require('path');
 // Sets up the Express App
 // =============================================================
 var app = express();
@@ -28,6 +28,8 @@ app.set('view engine', 'handlebars');
 
 // Static directory
 app.use(express.static("./public"));
+// app.use(express.static(path.join(__dirname, 'public')));
+// // app.use('/public', express.static(path.join(__dirname + '/public')));
 // Routes =============================================================
 var html_controller = require("./controllers/htmlRoutes.js");
 var admin_controller = require("./controllers/adminController.js");
