@@ -42,16 +42,16 @@ router.delete("/user/:id", function(req, res) {
   });
 });
 
-router.get("/user/modify/:username", function(req,res){
-  db.User.findOne({
-    where:{
-      username: req.params.username
-    }
-  }).then(function(data){
-    console.log(data)
-    res.render('modifyuser/index',{data: data})
-  })
-});
+// router.get("/user/modify/:username", function(req,res){
+//   db.User.findOne({
+//     where:{
+//       username: req.params.username
+//     }
+//   }).then(function(data){
+//     console.log(data)
+//     res.render('modifyuser/index',{data: data})
+//   })
+// });
 
 router.put("/user/:id", function(req, res) {
   db.Post.update({
@@ -81,6 +81,12 @@ router.get("/category/search/:categoryname", function(req,res){
   }).then(function(data){
     res.json(data);
   });
-})
+});
 
+// Quiz Routes
+router.post("/create/quiz", function(req, res) {
+  db.User.create(req.body).then(function(dbUser) {
+    res.redirect("/");
+  });
+});
 module.exports = router;
