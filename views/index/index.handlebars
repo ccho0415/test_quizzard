@@ -22,21 +22,22 @@
 <br><br>
 <a class="btn btn-default" href="/admin/users">View Users</a>
 <br><br>
-</div>
-<div class = "container">
-<h2>Modify a user</h2>
-
-<div class="container">
   <div class="row">
   <form id="user-search">
     <input id="userToSearch" placeholder="Which User?" type="text" />
     <button type="submit" class="btn btn-default" id="user-search-button">Search a User</button>
   </form>
-  <br><br>
+  <br>
   <span id="user-search-result"></span>
-  <br><br>
-  <div id = "modify-user-area"></div>
-  </div>
+  <br>
+<h2>Modify A User </h2>
+<form id ="#modifyUserForm">
+    <input type='text' name='modusername' placeholder='username' id ='userToModify'></input><br><br>
+    <input type='password' name='modpassword_hash' placeholder='password' id="modpassword_hash"></input><br><br>
+    <input type='url' name='modimg_url' placeholder='img url' id ="modimg_url"></input><br><br>
+    <input id = 'modify-user-submit' type='submit'></input>
+</form>
+</div>
 </div>
 <div class = "container">
   <div class = "row">
@@ -60,7 +61,13 @@
   </form>
   <br><br>
   <span id="category-search-result"></span>
+<h2>Modify a Category</h2>
+<form id ="#modifyCategoryForm">
+    <input type='text' name='modcat' placeholder='username' id ='catToModify'></input><br><br>
+    <textarea name="moddescription" placeholder="description" id ="moddescription"></textarea>
+    <input type='url' name='modimg_url' placeholder='img url' id ="modimg_urlcat"></input><br><br>
+    <input id = 'modify-category-submit' type='submit'></input>
+</form>  
   </div>
-
 </div>
     

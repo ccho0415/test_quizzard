@@ -42,16 +42,19 @@ router.delete("/user/:id", function(req, res) {
   });
 });
 
-router.put("/user/:username", function(req, res) {
+router.put("/modifyuser", function(req, res) {
   console.log(req.body);
-  db.Post.update(
-    {password: req.body.modpassword_hash},{
+  db.User.update({
+    password: req.body.password_hash,
+    img_url: req.body.img_url
+    },{
       where: {
-        username: req.params.username
+        username: req.body.username
       },
     }).then(function(dbUser) {
       res.json(dbUser);
     });
+
 });
 // Category Routes
 router.get("/categories", function(req, res) {
@@ -73,7 +76,20 @@ router.get("/category/search/:categoryname", function(req,res){
     res.json(data);
   });
 });
+router.put("/modifycategory", function(req, res) {
+  console.log(req.body);
+  db.Category.update({
+    description: req.body.description,
+    img_url: req.body.img_url
+    },{
+      where: {
+        categoryname: req.body.name
+      },
+    }).then(function(dbUser) {
+      res.json(dbUser);
+    });
 
+});
 // Quiz Routes
 router.post("/create/quiz", function(req, res) {
   db.User.create(req.body).then(function(dbUser) {

@@ -8,39 +8,30 @@ $(document).ready(function() {
 
   var categorySearchResult = $("#category-search-result");
 
-  var userToModify;
-
-  var modifyUserArea = $("#modify-user-area");
-
   $(document).on("submit", "#user-search", userSearch);
 
   $(document).on("submit", "#category-search", categorySearch);
 
-  
+  $(document).on("click", "#modify-user-submit", updateUser);
+
+  $(document).on("click", "#modify-category-submit", updateCategory);
 
 
-  $(document).on("click", "#modify-toggle", modifyToggle);
-
-
-  var currentuser;
   var userdata;
   var categorydata;
-  var moduserdata;
-
 
   // This is what changes the result that is displayed for the result
   // You can change this
   // ============================================================================
   function userinitializeRows(name, email, isAdmin, id, img, dob, created) {
-
+    userSearchResult.empty();
     userSearchResult.append("<img src = '"+img+"' height = '200px' width ='auto'>");
     userSearchResult.append("<h3>"+name+"</h3>");
     userSearchResult.append("<li> Email : "+email+"</li>");
     userSearchResult.append("<li> Admin Status : "+isAdmin+"</li>");
     userSearchResult.append("<li> Unique User Id : "+id+"</li>");
     userSearchResult.append("<li> Date of Birth : "+dob+"</li>");
-    userSearchResult.append("<li> Account Created : "+created+"</li>");
-    userSearchResult.append("<a class ='btn btn-default' id ='modify-toggle'> Modify User </a>") ;      
+    userSearchResult.append("<li> Account Created : "+created+"</li>");    
   }
 // ================================================================================
 
@@ -48,7 +39,6 @@ $(document).ready(function() {
 // Do not change this
   function userSearch(event) {
     event.preventDefault();
-
     var user = userToSearch.val().trim()
 
     $.get("/admin/user/search/"+user, function() {
@@ -71,7 +61,7 @@ $(document).ready(function() {
   // You can change this
   // ============================================================================
   function categoryinitializeRows(name, id, img, description, created) {
-
+    categorySearchResult.empty();
     categorySearchResult.append("<img src = '"+img+"' height = '200px' width ='auto'>");
     categorySearchResult.append("<h3>"+name+"</h3>");
     categorySearchResult.append("<li> Unique Category Id : "+id+"</li>");
@@ -101,43 +91,40 @@ $(document).ready(function() {
     categoryToSearch.val("");
   }
 
-
-
-
-function modifyToggle() {
-  modifyUserArea.append("<form id ='#modify-user'>"+
-    "<input type='text' name='modusername' placeholder='username' id ='userToModify'></input><br><br>"+
-    "<input type='password' name='modpassword_hash' placeholder='password'></input><br><br>"+
-    "<input type='checkbox' name='isAdmin' value='true' placeholder='admin'></input><br><br>"+
-    "<input type='url' name='img_url' placeholder='img url'></input> <input id = 'modify-user-submit' type='submit'></input></form>");
-
-var userToModify = $("input#userToModify");  
-$(document).on("click", "#modify-user-submit", modifyUserSubmit)
-
-function modifyUserSubmit(event){
-    event.preventDefault();
-    var moduser = userToModify.val().trim()
-    console.log(moduser);
-
-    $.ajax({
-      url: "/admin/user/"+ moduser, 
-      type: 'PUT',
-      success: function(response) {
-      console.log("pinging the server")
-    }
-  }).then(function(data){
-      console.log("Updated user data :", data);
-      moduserdata = data;
-// You can change this next line to take in more / less arguments
-// ======================================================================================================
-      userinitializeRows(data.username, data.email, data.isAdmin, data.id, data.img_url, data.dob, data.createdAt);
-      // ====================================================================================================
-// Do not change anything after this line
-    });
-    userToModify.val("");
-}
-}
-
+function updateUser(event){
+  event.preventDefault();
+  var currentuser = $("#userToModify").val().trim();
+  var newpass = $("#modpassword_hash").val().trim();
+  var newimg= $("#modimg_url").val().trim();
+  $.ajax({
+      method:"PUT",
+      url:"/admin/modifyuser",
+      data: {
+        username: currentuser,
+        password_hash: newpass,
+        img_url: newimg
+      }
+  }).done(function(){
+    console.log("all finished");
+  });
+} 
+function updateCategory(event){
+  event.preventDefault();
+  var currentcategory = $("#catToModify").val().trim();
+  var newdescription = $("#moddescription").val().trim();
+  var newimg= $("#modimg_urlcat").val().trim();
+  $.ajax({
+      method:"PUT",
+      url:"/admin/modifycategory",
+      data: {
+        name: currentcategory,
+        description: newdescription,
+        img_url: newimg
+      }
+  }).done(function(){
+    console.log("all finished");
+  });
+} 
 
 
 });
