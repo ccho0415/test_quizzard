@@ -42,21 +42,12 @@ router.delete("/user/:id", function(req, res) {
   });
 });
 
-// router.get("/user/modify/:username", function(req,res){
-//   db.User.findOne({
-//     where:{
-//       username: req.params.username
-//     }
-//   }).then(function(data){
-//     console.log(data)
-//     res.render('modifyuser/index',{data: data})
-//   })
-// });
-
-router.put("/user/:id", function(req, res) {
-  db.Post.update({
+router.put("/user/:username", function(req, res) {
+  console.log(req.body);
+  db.Post.update(
+    {password: req.body.modpassword_hash},{
       where: {
-        id: req.body.id
+        username: req.params.username
       },
     }).then(function(dbUser) {
       res.json(dbUser);

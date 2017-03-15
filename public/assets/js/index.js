@@ -8,7 +8,7 @@ $(document).ready(function() {
 
   var categorySearchResult = $("#category-search-result");
 
-  var userToModify =$("input#userToModify");  
+  var userToModify;
 
   var modifyUserArea = $("#modify-user-area");
 
@@ -16,10 +16,16 @@ $(document).ready(function() {
 
   $(document).on("submit", "#category-search", categorySearch);
 
+  
+
+
   $(document).on("click", "#modify-toggle", modifyToggle);
 
 
+  var currentuser;
   var userdata;
+  var categorydata;
+  var moduserdata;
 
 
   // This is what changes the result that is displayed for the result
@@ -48,7 +54,7 @@ $(document).ready(function() {
     $.get("/admin/user/search/"+user, function() {
     	console.log("pinging the server")
     }).then(function(data){
-      console.log("Todos", data);
+      console.log("User data :", data);
       userdata = data;
 // You can change this next line to take in more / less arguments
 // ======================================================================================================
@@ -56,6 +62,7 @@ $(document).ready(function() {
       // ====================================================================================================
 // Do not change anything after this line
     });
+    currentuser = userToSearch.val().trim();
     userToSearch.val("");
   }
 
@@ -97,14 +104,40 @@ $(document).ready(function() {
 
 
 
-// This edits the user
-// Do not change this
 function modifyToggle() {
-  modifyUserArea.append("<form id ='#modify-user'>");
-  modifyUserArea.append("<input type='text' name='username' placeholder='username' id ='userToModify'></input><br><br>");
-  modifyUserArea.append("<input type='password' name='password_hash' placeholder='password'></input><br><br>");
-  modifyUserArea.append("<input type='checkbox' name='isAdmin' value='true' placeholder='admin'></input><br><br>");
-  modifyUserArea.append("<input type='url' name='img_url' placeholder='img url'></input>")
-  modifyUserArea.append("<input type='submit'></input>")
+  modifyUserArea.append("<form id ='#modify-user'>"+
+    "<input type='text' name='modusername' placeholder='username' id ='userToModify'></input><br><br>"+
+    "<input type='password' name='modpassword_hash' placeholder='password'></input><br><br>"+
+    "<input type='checkbox' name='isAdmin' value='true' placeholder='admin'></input><br><br>"+
+    "<input type='url' name='img_url' placeholder='img url'></input> <input id = 'modify-user-submit' type='submit'></input></form>");
+
+var userToModify = $("input#userToModify");  
+$(document).on("click", "#modify-user-submit", modifyUserSubmit)
+
+function modifyUserSubmit(event){
+    event.preventDefault();
+    var moduser = userToModify.val().trim()
+    console.log(moduser);
+
+    $.ajax({
+      url: "/admin/user/"+ moduser, 
+      type: 'PUT',
+      success: function(response) {
+      console.log("pinging the server")
+    }
+  }).then(function(data){
+      console.log("Updated user data :", data);
+      moduserdata = data;
+// You can change this next line to take in more / less arguments
+// ======================================================================================================
+      userinitializeRows(data.username, data.email, data.isAdmin, data.id, data.img_url, data.dob, data.createdAt);
+      // ====================================================================================================
+// Do not change anything after this line
+    });
+    userToModify.val("");
 }
+}
+
+
+
 });
